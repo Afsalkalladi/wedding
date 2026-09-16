@@ -28,6 +28,6 @@ export const assets = {
   arabesque: '/assets/islamic/arabesque-corner.svg',
   monogram: '/assets/islamic/monogram-rosette.svg',
   dividerOrnament: '/assets/islamic/divider-ornament.svg',
-  // Drop a file in at this path and the music toggle switches itself on.
-  backgroundMusic: '/assets/wedding-background-music.mp3',
+  // Drop an audio file in at this path and the sound button appears by itself.
+  backgroundMusic: '/assets/music.mp3',
 } as const

@@ -82,16 +82,37 @@ a generic domed pavilion, not a drawing of the actual building — replace
 
 ## Messages from guests
 
-`src/lib/message.ts` POSTs `{ name, message, submittedAt }` as JSON to whatever URL is in
-`VITE_MESSAGE_ENDPOINT`:
+The form posts `{ name, message, submittedAt }` to the URL in `VITE_MESSAGE_ENDPOINT`.
+With no URL set, messages are only logged to the browser console.
 
-```bash
-echo 'VITE_MESSAGE_ENDPOINT=https://your-endpoint.example/messages' > .env.local
-```
+### Option A — Google Sheet (free, recommended)
 
-With no endpoint set, messages are logged to the console and the thank-you screen still
-shows, so the form can be worked on without a backend. A hidden honeypot field (`website`)
-silently drops bot submissions.
+1. Create a Google Sheet (e.g. "Wedding messages").
+2. **Extensions → Apps Script**, delete the sample code, paste in
+   `google-apps-script/Code.gs`, and save.
+3. **Deploy → New deployment → Web app**
+   - Execute as: **Me**
+   - Who has access: **Anyone**
+   Authorise when asked, then copy the **Web app URL** (ends in `/exec`).
+4. In this folder:
+   ```bash
+   cp .env.example .env.local
+   ```
+   and set `VITE_MESSAGE_ENDPOINT=` to that URL.
+5. Restart `npm run dev` (and rebuild before deploying — the URL is baked in at
+   build time). Messages arrive as rows in a **Messages** tab.
+
+If you edit `Code.gs` later, use **Deploy → Manage deployments → Edit → New version**;
+the URL stays the same.
+
+### Option B — Formspree
+
+Create a form at formspree.io and set `VITE_MESSAGE_ENDPOINT` to its
+`https://formspree.io/f/…` URL. Messages arrive by email. No code change.
+
+Either way the URL is public (it's in the page's JavaScript) — that's expected for both
+services. The hidden `website` honeypot drops most bot submissions; the Apps Script also
+caps name/message length.
 
 ## Typography
 
@@ -123,7 +144,39 @@ rather than crossing a leg.
 Checked at 320, 360, 375, 390 and 1000 px wide: the document never scrolls horizontally,
 and every line of the hero measures inside the arch legs.
 
-## Background music
+## Link preview (WhatsApp and others)
 
-Optional. Drop an MP3 at `public/assets/wedding-background-music.mp3` and the mute toggle
-appears by itself; without the file it renders nothing.
+When the link is shared, apps show `public/og-image.jpg` (the couple illustration on the
+page's ivory pattern, 1200×630, ~36 KB), then:
+
+- **Title:** We are getting married — Fathima Shahadiya & Mohammed Ajmal P
+- **Description:** We request the pleasure of your company as we begin our life together.
+
+Both live in `index.html` (`og:` and `twitter:` tags).
+
+Preview apps only follow absolute image URLs, so set the published address before
+building:
+
+```bash
+VITE_SITE_URL=https://your-site.example npm run build
+```
+
+(or put `VITE_SITE_URL=` in `.env.local`). The build warns if it's missing.
+
+- **After changing the couple picture**, regenerate the preview image: `npm run og`
+  (it uses `public/assets/couple.png` when present, the drawn SVG otherwise).
+- **Previews only work once the site is online** — WhatsApp can't reach `localhost`.
+- **WhatsApp caches previews** per link. If you shared the link before the image was
+  right, add something to the URL (e.g. `?v=2`) to get a fresh preview.
+
+## Sound
+
+Save an audio file as `public/assets/music.mp3` and a **Play sound** button appears in the
+bottom-right corner; without the file, nothing is shown. Browsers never allow sound to
+start by itself, so guests tap to play. The track loops, fades in and out over ~2 s, and
+pauses when the tab is in the background.
+
+Keep the file small (a 2–3 minute loop at 128 kbps is ~2–3 MB). Only use audio you have
+the rights to — your own recording, or a track whose licence allows use on a website. For
+an Islamic wedding, many families prefer a vocal-only nasheed or a Quran recitation over
+instrumental music; that's your call.
