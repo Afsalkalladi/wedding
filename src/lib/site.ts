@@ -19,9 +19,9 @@ export const site = {
 export const assets = {
   tile: '/assets/islamic/geometric-tile.svg',
   archHead: '/assets/islamic/arch-head.svg',
-  // Drop the couple's illustration in at this path and it replaces the drawn
-  // SVG automatically; until then `coupleFallback` is used.
-  couple: '/assets/couple.png',
+  // Made from art/couple-source.png by `npm run couple`. If it's missing, the
+  // drawn SVG (`coupleFallback`) is shown instead.
+  couple: '/assets/couple.webp',
   coupleFallback: '/assets/islamic/couple-illustration.svg',
   venue: '/assets/islamic/venue-illustration.svg',
   lantern: '/assets/islamic/lantern.svg',

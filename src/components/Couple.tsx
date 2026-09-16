@@ -14,7 +14,9 @@ export function Couple() {
             src={portraitMissing ? assets.coupleFallback : assets.couple}
             onError={() => setPortraitMissing(true)}
             alt={`Illustration of ${site.bride.name} and ${site.groom.name}`}
-            className="w-[min(420px,86vw)] h-auto mx-auto select-none"
+            // multiply: the image's white background takes on the page colour,
+            // so there's no visible rectangle around the illustration
+            className="w-[min(420px,86vw)] h-auto mx-auto select-none mix-blend-multiply"
           />
         </Reveal>
 

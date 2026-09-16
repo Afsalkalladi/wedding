@@ -17,8 +17,8 @@ const WIDTH = 1200
 const HEIGHT = 630
 const IVORY = '#F7F3EA'
 
-// Prefer the finished portrait once it exists; otherwise the drawn SVG.
-const portrait = `${root}public/assets/couple.png`
+// Prefer the prepared portrait (npm run couple); otherwise the drawn SVG.
+const portrait = `${root}public/assets/couple.webp`
 const fallback = `${root}public/assets/islamic/couple-illustration.svg`
 const couplePath = existsSync(portrait) ? portrait : fallback
 
@@ -33,8 +33,8 @@ const background = Buffer.from(`
         <circle cx="48" cy="48" r="6"/>
       </g>
     </pattern>
-    <radialGradient id="fade" cx="50%" cy="50%" r="60%">
-      <stop offset="30%" stop-color="${IVORY}" stop-opacity="1"/>
+    <radialGradient id="fade" cx="50%" cy="50%" r="62%" gradientTransform="translate(0.5 0.5) scale(0.62 1) translate(-0.5 -0.5)">
+      <stop offset="55%" stop-color="${IVORY}" stop-opacity="1"/>
       <stop offset="100%" stop-color="${IVORY}" stop-opacity="0"/>
     </radialGradient>
   </defs>
@@ -50,7 +50,8 @@ const couple = await sharp(couplePath, { density: 300 })
 
 const out = `${root}public/og-image.jpg`
 await sharp(background)
-  .composite([{ input: couple, gravity: 'center' }])
+  // multiply, as on the page, so the portrait's white ground becomes ivory
+  .composite([{ input: couple, gravity: 'center', blend: 'multiply' }])
   .flatten({ background: IVORY })
   .jpeg({ quality: 86, mozjpeg: true })
   .toFile(out)

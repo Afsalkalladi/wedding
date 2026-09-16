@@ -9,17 +9,23 @@ every piece is editable text and stays sharp at any size.
 
 ### The couple's picture
 
-`Couple.tsx` shows `public/assets/couple.png` if that file exists, and falls back to the
-drawn SVG if it doesn't — so dropping a new illustration in at that path is the whole
-edit, no code change.
+The artwork lives outside the site at `art/couple-source.png`. Prepare it with:
 
-**Size for the replacement:** the picture is displayed at a maximum of **420 px wide**, so
-export at **1260 px wide** (3x, for retina screens); anything above ~1600 px is wasted
-weight. Height is free — the layout uses whatever aspect ratio the file has; the current
-drawing is 520x560 (roughly square), and a portrait 2:3 crop works equally well. Save it
-as PNG with either a transparent background or the page's ivory (#F7F3EA), and with **no
-lettering on it** — the section prints the names and the invitation line itself, just
-below the picture.
+```bash
+npm run couple   # → public/assets/couple.webp
+npm run og       # refresh the WhatsApp preview from it
+```
+
+The source is drawn on textured cream paper. `prepare-couple` divides that paper tone out
+so the background becomes pure white, lifts the paper grain to white, and paints a thin
+edge band white (the source has a faint 1px frame). On the page the image uses
+`mix-blend-mode: multiply`, so its white takes on the page's exact ivory — no visible box.
+Colours in the artwork are kept. The result is ~95 KB instead of the 1.6 MB source.
+
+To replace the artwork later, overwrite `art/couple-source.png` and run both commands.
+Anything around **1260 px wide** is right (it displays at up to 420 px); keep lettering off
+the image, since the section prints the names itself. If `couple.webp` is missing, the drawn
+SVG is shown instead.
 
 `couple-illustration.svg` is the fallback, drawn from the engagement photo —
 her pale blue kurta and dupatta, his white shirt with rolled sleeves and stone trousers,
