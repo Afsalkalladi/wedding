@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 120 120">
+  <defs>
+    <g id="khatim" fill="none" stroke="#3A5542" stroke-width="1.1" stroke-linejoin="round">
+      <path d="M-25,-25 H25 V25 H-25 Z"/>
+      <path d="M0,-35.4 L35.4,0 L0,35.4 L-35.4,0 Z"/>
+      <circle cx="0" cy="0" r="7"/>
+    </g>
+  </defs>
+  <g stroke-opacity="0.22">
+    <use href="#khatim" x="60" y="60"/>
+    <use href="#khatim" x="0" y="0"/>
+    <use href="#khatim" x="120" y="0"/>
+    <use href="#khatim" x="0" y="120"/>
+    <use href="#khatim" x="120" y="120"/>
+  </g>
+</svg>

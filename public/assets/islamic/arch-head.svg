@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 400" width="600" height="400">
+  <!-- The head of a pointed mosque arch. Legs continue in CSS so the frame fits
+       any screen height. Springing line is the bottom edge (y=400); the legs
+       stand at x=40/560, 66/534 and 92/508 — see ArchFrame.tsx. -->
+  <g fill="none" stroke="#3A5542" stroke-linejoin="round" stroke-linecap="round">
+    <!-- crescent finial -->
+    <path d="M300,8 A24,24 0 1 0 318,50 A19,19 0 1 1 300,8 Z" stroke-width="3" stroke-opacity="0.55"/>
+    <path d="M300,56 V70" stroke-width="3" stroke-opacity="0.5"/>
+
+    <!-- outer pointed arch -->
+    <path d="M40,400 V300 Q40,160 300,70 Q560,160 560,300 V400"
+          stroke-width="3" stroke-opacity="0.45"/>
+    <!-- inner arch -->
+    <path d="M66,400 V304 Q66,184 300,100 Q534,184 534,304 V400"
+          stroke-width="1.5" stroke-opacity="0.28"/>
+    <!-- cusped guide -->
+    <path d="M92,400 V308 Q92,208 300,130 Q508,208 508,308 V400"
+          stroke-width="1" stroke-opacity="0.2" stroke-dasharray="3 7"/>
+
+    <!-- capitals -->
+    <path d="M18,300 H62" stroke-width="3" stroke-opacity="0.4"/>
+    <path d="M538,300 H582" stroke-width="3" stroke-opacity="0.4"/>
+  </g>
+  <circle cx="330" cy="18" r="4.5" fill="#3A5542" fill-opacity="0.45"/>
+</svg>

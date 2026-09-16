@@ -1,0 +1,134 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 560" width="520" height="560">
+  <!-- Drawn from the couple's engagement photograph: she on the left in a pale
+       blue kurta with a soft dupatta and a pink bouquet, he on the right in a
+       white shirt with rolled sleeves and stone trousers. Both wear
+       spectacles. Dress and posture only — no facial features. -->
+
+  <!-- ogee arch surround, echoing the hero -->
+  <g fill="none" stroke="#3A5542" stroke-opacity="0.4" stroke-width="3" stroke-linejoin="round">
+    <path d="M96,510 V300 C96,242 142,158 260,84 C378,158 424,242 424,300 V510"/>
+    <path d="M118,510 V300 C118,250 158,178 260,114 C362,178 402,250 402,300 V510"
+          stroke-opacity="0.16" stroke-width="1.5"/>
+    <path d="M260,84 V64"/>
+    <path d="M260,28 A17,17 0 1 0 273,58 A13,13 0 1 1 260,28 Z"/>
+    <path d="M76,510 H444"/>
+  </g>
+
+  <!-- The figures are scaled about the ground line (260,510) so their heads
+       clear the arch: translate(26,51) scale(.9) == scale .9 around that point. -->
+  <g transform="translate(26,51) scale(0.9)">
+
+  <!-- colour washes, taken from the outfits in the photograph -->
+  <g stroke="none">
+    <path d="M176,210 C156,232 148,320 144,466 L248,466 C244,320 234,232 216,208 Z"
+          fill="#9FC2D4" fill-opacity="0.26"/>
+    <path d="M180,212 C160,252 154,340 160,432 L176,432 C170,340 172,252 190,214 Z"
+          fill="#9FC2D4" fill-opacity="0.2"/>
+    <path d="M178,164 C177,132 185,120 196,120 C207,120 215,132 214,164
+             C213,184 206,196 199,202 L189,202 C182,190 178,178 178,164 Z"
+          fill="#E8D5CE" fill-opacity="0.3"/>
+    <path d="M296,200 C286,240 284,270 284,300 L360,300 C360,270 358,240 348,200 Z"
+          fill="#FFFFFF" fill-opacity="0.5"/>
+    <path d="M284,306 C280,380 278,440 278,510 L366,510 C366,440 364,380 360,306 Z"
+          fill="#C9B79A" fill-opacity="0.3"/>
+  </g>
+
+  <g fill="none" stroke="#3A5542" stroke-linecap="round" stroke-linejoin="round">
+    <!-- ── bride ─────────────────────────────────────────────── -->
+    <g stroke-opacity="0.7" stroke-width="2.2">
+      <!-- dupatta over the head -->
+      <path d="M178,164 C177,132 185,120 196,120 C207,120 215,132 214,164
+               C213,184 206,196 199,202"/>
+      <path d="M178,164 C179,180 183,194 189,202"/>
+      <path d="M184,140 C190,134 202,134 208,140" stroke-opacity="0.35" stroke-width="1.3"/>
+      <!-- spectacles -->
+      <g stroke-width="1.8">
+        <path d="M184,155 h9 a2.5,2.5 0 0 1 2.5,2.5 v3.5 a2.5,2.5 0 0 1 -2.5,2.5 h-9 a2.5,2.5 0 0 1 -2.5,-2.5 v-3.5 a2.5,2.5 0 0 1 2.5,-2.5 Z"/>
+        <path d="M200,155 h9 a2.5,2.5 0 0 1 2.5,2.5 v3.5 a2.5,2.5 0 0 1 -2.5,2.5 h-9 a2.5,2.5 0 0 1 -2.5,-2.5 v-3.5 a2.5,2.5 0 0 1 2.5,-2.5 Z"/>
+        <path d="M195.5,159 H198.5"/>
+      </g>
+      <!-- shoulders and kurta -->
+      <path d="M189,202 C193,208 199,208 199,202" stroke-opacity="0.4" stroke-width="1.4"/>
+      <path d="M189,202 C180,206 176,208 176,210" stroke-opacity="0.5" stroke-width="1.8"/>
+      <path d="M199,202 C208,206 212,208 214,210" stroke-opacity="0.5" stroke-width="1.8"/>
+      <path d="M180,208 C156,232 148,320 144,466"/>
+      <path d="M214,208 C234,232 244,320 248,466"/>
+      <path d="M144,466 C180,474 214,474 248,466"/>
+      <path d="M197,212 V466" stroke-opacity="0.16" stroke-width="1.3"/>
+      <path d="M150,442 C182,450 212,450 242,442" stroke-opacity="0.28" stroke-width="1.3"/>
+      <!-- dupatta falling down her side -->
+      <path d="M182,212 C160,252 154,340 160,432"/>
+      <path d="M192,214 C174,254 172,342 176,432" stroke-opacity="0.3" stroke-width="1.4"/>
+      <path d="M160,432 C166,438 172,438 176,432" stroke-opacity="0.4" stroke-width="1.4"/>
+      <!-- palazzo -->
+      <path d="M166,466 V508 M197,466 V508 M228,466 V508" stroke-opacity="0.22" stroke-width="1.3"/>
+      <!-- arms, mehndi on the near hand -->
+      <path d="M180,216 C168,252 170,282 180,298" stroke-opacity="0.5" stroke-width="1.8"/>
+      <path d="M214,216 C230,248 238,276 238,294" stroke-opacity="0.5" stroke-width="1.8"/>
+      <path d="M180,298 C190,306 202,308 214,304" stroke-opacity="0.5" stroke-width="1.8"/>
+      <path d="M226,286 c3,4 3,8 1,11 M232,282 c3,4 3,8 1,11" stroke-opacity="0.28" stroke-width="1.1"/>
+    </g>
+
+    <!-- ── groom ─────────────────────────────────────────────── -->
+    <g stroke-opacity="0.7" stroke-width="2.2">
+      <!-- head, curls and beard -->
+      <path d="M304,152 C304,124 312,112 322,112 C332,112 340,124 340,152
+               C340,174 332,186 322,186 C312,186 304,174 304,152"/>
+      <path d="M304,140 c3,-8 9,-3 11,-10 c4,7 11,2 14,-3 c4,7 11,6 13,0 c3,5 4,8 3,13"
+            stroke-opacity="0.5" stroke-width="1.5"/>
+      <path d="M307,158 C308,176 315,186 322,186 C329,186 336,176 337,158"
+            stroke-opacity="0.3" stroke-width="1.3"/>
+      <!-- spectacles -->
+      <g stroke-width="1.8">
+        <path d="M308,150 h10 a2.5,2.5 0 0 1 2.5,2.5 v3.5 a2.5,2.5 0 0 1 -2.5,2.5 h-10 a2.5,2.5 0 0 1 -2.5,-2.5 v-3.5 a2.5,2.5 0 0 1 2.5,-2.5 Z"/>
+        <path d="M325,150 h10 a2.5,2.5 0 0 1 2.5,2.5 v3.5 a2.5,2.5 0 0 1 -2.5,2.5 h-10 a2.5,2.5 0 0 1 -2.5,-2.5 v-3.5 a2.5,2.5 0 0 1 2.5,-2.5 Z"/>
+        <path d="M320.5,154 H323.5"/>
+      </g>
+      <!-- collar and shirt -->
+      <path d="M322,186 V198"/>
+      <path d="M310,196 L322,212 L334,196"/>
+      <path d="M310,196 C300,200 296,200 296,200"/>
+      <path d="M334,196 C344,200 348,200 348,200"/>
+      <path d="M296,200 C286,240 284,270 284,300"/>
+      <path d="M348,200 C358,240 360,270 360,300"/>
+      <path d="M322,212 V298" stroke-opacity="0.16" stroke-width="1.3"/>
+      <!-- rolled sleeves -->
+      <path d="M288,248 C294,254 304,254 310,248" stroke-opacity="0.4" stroke-width="1.5"/>
+      <path d="M356,248 C350,254 340,254 334,248" stroke-opacity="0.4" stroke-width="1.5"/>
+      <!-- forearms clasped in front -->
+      <path d="M292,252 C294,276 306,290 318,294" stroke-opacity="0.55" stroke-width="1.9"/>
+      <path d="M352,252 C350,276 338,290 326,294" stroke-opacity="0.55" stroke-width="1.9"/>
+      <path d="M318,294 C321,299 327,299 330,294" stroke-opacity="0.5" stroke-width="1.6"/>
+      <path d="M344,276 l7,4" stroke-opacity="0.45" stroke-width="3"/>
+      <!-- belt -->
+      <path d="M284,300 H360"/>
+      <path d="M284,310 H360"/>
+      <path d="M314,300 h16 v10 h-16 Z" stroke-opacity="0.5" stroke-width="1.4"/>
+      <!-- trousers -->
+      <path d="M284,310 C280,380 278,440 278,508"/>
+      <path d="M360,310 C364,380 366,440 366,508"/>
+      <path d="M278,508 H314 M330,508 H366"/>
+      <path d="M314,508 C316,440 316,380 318,330" stroke-opacity="0.45"/>
+      <path d="M330,508 C328,440 328,380 326,330" stroke-opacity="0.45"/>
+      <path d="M322,314 V330" stroke-opacity="0.25" stroke-width="1.3"/>
+    </g>
+
+    <!-- ── bouquet ───────────────────────────────────────────── -->
+    <g stroke-opacity="0.5" stroke-width="1.8">
+      <circle cx="238" cy="276" r="7"/>
+      <circle cx="252" cy="284" r="6"/>
+      <circle cx="240" cy="292" r="6"/>
+      <circle cx="254" cy="268" r="5"/>
+      <path d="M244,298 C246,316 248,328 252,338" stroke-opacity="0.3"/>
+      <path d="M250,292 C258,308 262,320 264,332" stroke-opacity="0.3"/>
+      <path d="M234,296 C232,312 230,322 228,332" stroke-opacity="0.3"/>
+    </g>
+    <g stroke="none" fill="#E79BB4" fill-opacity="0.35">
+      <circle cx="238" cy="276" r="6"/>
+      <circle cx="252" cy="284" r="5"/>
+      <circle cx="240" cy="292" r="5"/>
+      <circle cx="254" cy="268" r="4"/>
+    </g>
+  </g>
+  </g>
+</svg>

@@ -1,0 +1,65 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 40 33% 95%;
+    --foreground: 137 19% 28%;
+    --card: 40 33% 95%;
+    --card-foreground: 137 19% 28%;
+    --popover: 40 33% 95%;
+    --popover-foreground: 137 19% 28%;
+    --primary: 137 19% 28%;
+    --primary-foreground: 40 33% 95%;
+    --secondary: 40 25% 91%;
+    --secondary-foreground: 137 19% 28%;
+    --muted: 40 20% 88%;
+    --muted-foreground: 137 19% 28%;
+    --accent: 137 19% 28%;
+    --accent-foreground: 40 33% 95%;
+    --destructive: 0 65% 55%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 40 15% 82%;
+    --input: 40 15% 82%;
+    --ring: 137 19% 28%;
+    --radius: 0.5rem;
+
+    --ivory: 40 33% 95%;
+    --cream: 40 25% 91%;
+    --sage: 137 19% 28%;
+    --sage-dark: 137 19% 22%;
+    --sage-light: 137 19% 35%;
+    --gold: 137 19% 28%;
+    --gold-soft: 137 19% 35%;
+    --champagne: 40 33% 95%;
+    --champagne-dark: 40 20% 88%;
+    --champagne-light: 40 25% 91%;
+
+    --shadow-soft: 0 2px 15px -3px rgba(71, 84, 58, 0.08), 0 4px 6px -2px rgba(71, 84, 58, 0.04);
+    --shadow-elegant: 0 10px 40px -10px rgba(71, 84, 58, 0.12), 0 4px 15px -3px rgba(71, 84, 58, 0.06);
+    --shadow-lifted: 0 20px 50px -15px rgba(71, 84, 58, 0.16), 0 8px 20px -5px rgba(71, 84, 58, 0.08);
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  html,
+  body {
+    @apply bg-background text-foreground font-body antialiased;
+    overflow-x: hidden;
+  }
+
+  h1,
+  h2,
+  h3 {
+    @apply font-display font-normal;
+  }
+
+  /* Arabic keeps its own spacing — the Latin tracking would break it up. */
+  [lang='ar'] {
+    letter-spacing: normal !important;
+    text-transform: none !important;
+  }
+}
