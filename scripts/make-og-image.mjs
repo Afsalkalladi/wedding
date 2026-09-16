@@ -17,8 +17,8 @@ const WIDTH = 1200
 const HEIGHT = 630
 const IVORY = '#F7F3EA'
 
-// Prefer the prepared portrait (npm run couple); otherwise the drawn SVG.
-const portrait = `${root}public/assets/couple.webp`
+// Prefer the white-ground portrait from `npm run couple`; otherwise the drawn SVG.
+const portrait = `${root}art/couple-white.png`
 const fallback = `${root}public/assets/islamic/couple-illustration.svg`
 const couplePath = existsSync(portrait) ? portrait : fallback
 

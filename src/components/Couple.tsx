@@ -1,22 +1,18 @@
-import { useState } from 'react'
 import { Reveal } from './Reveal'
 import { assets, site } from '../lib/site'
 
 export function Couple() {
-  // The portrait is optional: if the file isn't there, the drawn SVG stands in.
-  const [portraitMissing, setPortraitMissing] = useState(false)
-
   return (
     <section id="couple" className="relative py-16 md:py-24 px-5 overflow-hidden">
       <div className="max-w-2xl mx-auto text-center">
         <Reveal>
           <img
-            src={portraitMissing ? assets.coupleFallback : assets.couple}
-            onError={() => setPortraitMissing(true)}
+            // The portrait is optional: without it, the drawn SVG stands in.
+            src={assets.couple ?? assets.coupleFallback}
             alt={`Illustration of ${site.bride.name} and ${site.groom.name}`}
-            // multiply: the image's white background takes on the page colour,
-            // so there's no visible rectangle around the illustration
-            className="w-[min(420px,86vw)] h-auto mx-auto select-none mix-blend-multiply"
+            // The page colour is baked into the image's background (see
+            // scripts/prepare-couple.mjs), so it needs no blend mode.
+            className="w-[min(420px,86vw)] h-auto mx-auto select-none"
           />
         </Reveal>
 

@@ -12,14 +12,17 @@ every piece is editable text and stays sharp at any size.
 The artwork lives outside the site at `art/couple-source.png`. Prepare it with:
 
 ```bash
-npm run couple   # → public/assets/couple.webp
+npm run couple   # → src/assets/couple.webp
 npm run og       # refresh the WhatsApp preview from it
 ```
 
-The source is drawn on textured cream paper. `prepare-couple` divides that paper tone out
-so the background becomes pure white, lifts the paper grain to white, and paints a thin
-edge band white (the source has a faint 1px frame). On the page the image uses
-`mix-blend-mode: multiply`, so its white takes on the page's exact ivory — no visible box.
+The source is drawn on textured cream paper. `prepare-couple` divides that paper tone out,
+lifts the paper grain away, paints a thin edge band clean (the source has a faint 1px
+frame), and then tints the picture with the page colour — so its background *is* the page
+background and there's no visible box. The colour is baked into the file rather than
+applied with a CSS blend mode, because browsers skip the blend while the fade-in animation
+runs, which flashed a white box on load. If you ever change `--background` in
+`src/index.css`, update `PAGE` in the script and re-run it.
 Colours in the artwork are kept. The result is ~95 KB instead of the 1.6 MB source.
 
 To replace the artwork later, overwrite `art/couple-source.png` and run both commands.
@@ -177,8 +180,10 @@ VITE_SITE_URL=https://your-site.example npm run build
 
 ## Sound
 
-Save an audio file as `public/assets/music.mp3` and a **Play sound** button appears in the
-bottom-right corner; without the file, nothing is shown. Browsers never allow sound to
+Save an audio file as `src/assets/music.mp3` (or `music.m4a` / `music.ogg`) and a **Play
+sound** button appears in the bottom-right corner; without the file, nothing is shown.
+Files in `src/assets/` get a content-hashed name when built, so a replaced file is never
+served stale from a guest's cache. Browsers never allow sound to
 start by itself, so guests tap to play. The track loops, fades in and out over ~2 s, and
 pauses when the tab is in the background.
 

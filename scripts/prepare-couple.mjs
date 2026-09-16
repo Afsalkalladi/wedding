@@ -4,12 +4,15 @@
  *   npm run couple            (reads art/couple-source.png)
  *
  * The artwork comes on a textured cream "paper". This script divides that
- * paper colour out so the background becomes pure white and lifts the paper
- * grain to white as well. On the page the image is drawn with
- * `mix-blend-mode: multiply`, so white takes on the page's exact ivory and the
- * picture has no visible edge. The artwork itself keeps its colours.
+ * paper colour out (background → pure white, grain lifted away), then tints
+ * the result with the page colour, so the picture's background IS the page
+ * background and there's no visible edge. The colour is baked in rather than
+ * applied with a CSS blend mode because a blend is skipped while the fade-in
+ * animation runs, which flashed a white box on load.
  *
- * Output: public/assets/couple.webp (much lighter than the source PNG).
+ * Outputs:
+ *   src/assets/couple.webp      — for the page (page colour baked in)
+ *   art/couple-white.png        — white-ground version for `npm run og`
  */
 import { statSync } from 'node:fs'
 import { fileURLToPath } from 'node:url'
@@ -17,7 +20,11 @@ import sharp from 'sharp'
 
 const root = fileURLToPath(new URL('..', import.meta.url))
 const SRC = `${root}art/couple-source.png`
-const OUT = `${root}public/assets/couple.webp`
+const OUT = `${root}src/assets/couple.webp`
+const OUT_WHITE = `${root}art/couple-white.png`
+
+// Must match --background in src/index.css (hsl(40 33% 95%) renders as this).
+const PAGE = [246, 244, 238]
 
 // Paper tones brighter than LOW are pushed toward white; above HIGH they are
 // pure white. Values are after the paper colour has been divided out (0–1).
@@ -72,10 +79,17 @@ for (let i = 0; i < data.length; i += info.channels) {
   }
 }
 
-await sharp(data, { raw: info })
-  .resize({ width: MAX_WIDTH, withoutEnlargement: true })
-  .webp({ quality: 88, effort: 6 })
-  .toFile(OUT)
+const resize = { width: MAX_WIDTH, withoutEnlargement: true }
+
+await sharp(data, { raw: info }).resize(resize).png({ compressionLevel: 9 }).toFile(OUT_WHITE)
+
+// Multiply by the page colour: white → page colour, everything else tinted
+// exactly as `mix-blend-mode: multiply` would have done.
+const tinted = Buffer.from(data)
+for (let i = 0; i < tinted.length; i += info.channels) {
+  for (let c = 0; c < 3; c++) tinted[i + c] = Math.round((tinted[i + c] * PAGE[c]) / 255)
+}
+await sharp(tinted, { raw: info }).resize(resize).webp({ quality: 88, effort: 6 }).toFile(OUT)
 
 console.log(
   `couple.webp written (${Math.round(statSync(OUT).size / 1024)} KB), paper colour was rgb(${paper.join(', ')})`,

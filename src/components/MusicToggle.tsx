@@ -19,15 +19,29 @@ export function MusicToggle() {
   const [showLabel, setShowLabel] = useState(true)
 
   useEffect(() => {
-    const audio = new Audio(assets.backgroundMusic)
+    if (assets.backgroundMusic.length === 0) return
+    const audio = new Audio()
     audio.loop = true
     audio.preload = 'auto'
     audio.volume = 0
+
+    // Try each candidate file in turn until one loads.
+    const sources = [...assets.backgroundMusic]
+    let index = 0
+    const tryNext = () => {
+      if (index >= sources.length) {
+        setAvailable(false)
+        return
+      }
+      audio.src = sources[index++]
+      audio.load()
+    }
     const onReady = () => setAvailable(true)
-    const onError = () => setAvailable(false)
+    const onError = () => tryNext()
     audio.addEventListener('canplaythrough', onReady)
     audio.addEventListener('error', onError)
     audioRef.current = audio
+    tryNext()
 
     // Don't keep playing in a background tab.
     const onVisibility = () => {
