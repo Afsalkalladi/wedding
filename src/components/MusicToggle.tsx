@@ -1,100 +1,10 @@
-import { useEffect, useRef, useState } from 'react'
 import { motion } from 'framer-motion'
 import { Volume2, VolumeX } from 'lucide-react'
-import { assets } from '../lib/site'
+import { useMusic } from '../lib/MusicProvider'
 
-const TARGET_VOLUME = 0.25
-const FADE_MS = 1800
-
-/**
- * Background audio behind a mute/unmute speaker button. Browsers refuse to
- * start sound without a tap, so the page opens muted; unmuting fades the track
- * in, muting fades it out. It loops, and pauses while the tab is hidden.
- * Renders nothing if there's no audio file.
- */
+/** Mute/unmute button for the background track the wax stamp started. */
 export function MusicToggle() {
-  const audioRef = useRef<HTMLAudioElement | null>(null)
-  const fadeRef = useRef<number>()
-  const [available, setAvailable] = useState(false)
-  const [playing, setPlaying] = useState(false)
-
-  useEffect(() => {
-    if (assets.backgroundMusic.length === 0) return
-    const audio = new Audio()
-    audio.loop = true
-    audio.preload = 'auto'
-    audio.volume = 0
-
-    // Try each candidate file in turn until one loads.
-    const sources = [...assets.backgroundMusic]
-    let index = 0
-    const tryNext = () => {
-      if (index >= sources.length) {
-        setAvailable(false)
-        return
-      }
-      audio.src = sources[index++]
-      audio.load()
-    }
-    const onReady = () => setAvailable(true)
-    const onError = () => tryNext()
-    audio.addEventListener('canplaythrough', onReady)
-    audio.addEventListener('error', onError)
-    audioRef.current = audio
-    tryNext()
-
-    // Don't keep playing in a background tab.
-    const onVisibility = () => {
-      if (document.hidden && !audio.paused) {
-        audio.pause()
-        setPlaying(false)
-      }
-    }
-    document.addEventListener('visibilitychange', onVisibility)
-
-    return () => {
-      audio.pause()
-      audio.removeEventListener('canplaythrough', onReady)
-      audio.removeEventListener('error', onError)
-      document.removeEventListener('visibilitychange', onVisibility)
-      window.clearInterval(fadeRef.current)
-      audioRef.current = null
-    }
-  }, [])
-
-  const fadeTo = (audio: HTMLAudioElement, target: number, then?: () => void) => {
-    window.clearInterval(fadeRef.current)
-    const steps = 30
-    const delta = (target - audio.volume) / steps
-    let i = 0
-    fadeRef.current = window.setInterval(() => {
-      i += 1
-      audio.volume = Math.min(1, Math.max(0, audio.volume + delta))
-      if (i >= steps) {
-        window.clearInterval(fadeRef.current)
-        audio.volume = target
-        then?.()
-      }
-    }, FADE_MS / steps)
-  }
-
-  const toggle = () => {
-    const audio = audioRef.current
-    if (!audio) return
-
-    if (audio.paused) {
-      audio
-        .play()
-        .then(() => {
-          setPlaying(true)
-          fadeTo(audio, TARGET_VOLUME)
-        })
-        .catch(() => setPlaying(false))
-    } else {
-      setPlaying(false)
-      fadeTo(audio, 0, () => audio.pause())
-    }
-  }
+  const { available, playing, toggle } = useMusic()
 
   if (!available) return null
 
@@ -102,7 +12,7 @@ export function MusicToggle() {
     <motion.button
       initial={{ opacity: 0, y: 12 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.8, delay: 1.5 }}
+      transition={{ duration: 0.8 }}
       onClick={toggle}
       aria-label={playing ? 'Mute sound' : 'Unmute sound'}
       aria-pressed={playing}
