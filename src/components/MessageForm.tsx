@@ -45,22 +45,26 @@ export function MessageForm() {
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            className="relative text-center bg-foreground/[0.03] border border-foreground/10 rounded-2xl px-5 py-12 sm:px-8"
+            className="relative text-center rounded-2xl px-5 py-12 sm:px-8 shadow-soft"
+            style={{
+              background:
+                'linear-gradient(160deg, hsl(var(--wash-gold) / 0.6), hsl(var(--background) / 0.7))',
+            }}
           >
-            <h2 className="font-display text-[clamp(2rem,9vw,3.5rem)] text-foreground mb-4">
+            <h2 className="font-display text-[clamp(2.25rem,9.5vw,3.75rem)] text-foreground mb-4">
               With Gratitude
             </h2>
-            <p className="font-body text-base text-foreground/70 italic">
+            <p className="font-body text-lg text-foreground/70 italic">
               Thank you for your kind words — they mean a great deal to us.
             </p>
           </motion.div>
         ) : (
           <Reveal className="relative">
             <div className="text-center mb-10">
-              <h2 className="font-display text-[clamp(2.25rem,10vw,4.5rem)] text-foreground mb-2">
+              <h2 className="font-display text-[clamp(2.5rem,11vw,5rem)] text-foreground mb-2">
                 A Message for the Couple
               </h2>
-              <p className="font-body text-xs sm:text-sm tracking-[0.25em] uppercase text-foreground/50">
+              <p className="font-body text-xs sm:text-sm tracking-[0.25em] uppercase text-gold-soft">
                 We should be delighted to hear from you
               </p>
             </div>
@@ -92,7 +96,7 @@ export function MessageForm() {
                   value={name}
                   onChange={(e) => setName(e.target.value)}
                   placeholder="Full name"
-                  className="mt-2 flex h-11 w-full rounded-md border px-3 py-2 text-base bg-transparent border-foreground/20 text-foreground placeholder:text-foreground/40 focus:border-foreground/50 focus-visible:outline-none font-body"
+                  className="mt-2 flex h-11 w-full rounded-lg px-3 py-2 text-base bg-foreground/[0.05] text-foreground placeholder:text-foreground/40 focus-visible:outline-none focus:bg-foreground/[0.08] focus:shadow-[0_0_0_3px_hsl(var(--gold)/0.25)] shadow-[inset_0_1px_2px_rgba(0,0,0,0.05)] transition-all font-body"
                 />
               </div>
 
@@ -106,7 +110,7 @@ export function MessageForm() {
                   value={message}
                   onChange={(e) => setMessage(e.target.value)}
                   placeholder="Your prayers and good wishes for us."
-                  className="mt-2 flex w-full rounded-md border px-3 py-2 text-base bg-transparent border-foreground/20 text-foreground placeholder:text-foreground/40 focus:border-foreground/50 focus-visible:outline-none min-h-[120px] font-body"
+                  className="mt-2 flex w-full rounded-lg px-3 py-2 text-base bg-foreground/[0.05] text-foreground placeholder:text-foreground/40 focus-visible:outline-none focus:bg-foreground/[0.08] focus:shadow-[0_0_0_3px_hsl(var(--gold)/0.25)] shadow-[inset_0_1px_2px_rgba(0,0,0,0.05)] min-h-[120px] transition-all font-body"
                 />
               </div>
 
@@ -119,7 +123,8 @@ export function MessageForm() {
               <button
                 type="submit"
                 disabled={status === 'sending'}
-                className="inline-flex items-center justify-center gap-2 w-full bg-foreground hover:bg-foreground/90 text-background font-body tracking-[0.15em] uppercase text-xs sm:text-sm py-5 px-4 rounded-lg transition-colors disabled:opacity-50 disabled:pointer-events-none"
+                className="inline-flex items-center justify-center gap-2 w-full text-background font-body tracking-[0.15em] uppercase text-xs sm:text-sm py-5 px-4 rounded-lg shadow-soft hover:shadow-elegant hover:brightness-105 transition-[filter,box-shadow] disabled:opacity-50 disabled:pointer-events-none"
+                style={{ background: 'linear-gradient(135deg, hsl(var(--gold)), hsl(var(--gold-soft)))' }}
               >
                 <Send className="w-4 h-4" />
                 {status === 'sending' ? 'Sending…' : 'Send Message'}

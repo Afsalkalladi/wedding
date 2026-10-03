@@ -25,6 +25,6 @@ export default defineConfig(({ mode, command }) => {
   const env = loadEnv(mode, '.', '')
   return {
     plugins: [react(), siteUrl(env.VITE_SITE_URL ?? '', command === 'build')],
-    server: { port: 5173 },
+    server: { host: true, port: 5173 },
   }
 })

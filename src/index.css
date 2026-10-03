@@ -5,36 +5,42 @@
 @layer base {
   :root {
     --background: 40 33% 95%;
-    --foreground: 137 19% 28%;
+    --foreground: 150 38% 20%;
     --card: 40 33% 95%;
-    --card-foreground: 137 19% 28%;
+    --card-foreground: 150 38% 20%;
     --popover: 40 33% 95%;
-    --popover-foreground: 137 19% 28%;
-    --primary: 137 19% 28%;
+    --popover-foreground: 150 38% 20%;
+    --primary: 150 38% 20%;
     --primary-foreground: 40 33% 95%;
     --secondary: 40 25% 91%;
-    --secondary-foreground: 137 19% 28%;
+    --secondary-foreground: 150 38% 20%;
     --muted: 40 20% 88%;
-    --muted-foreground: 137 19% 28%;
-    --accent: 137 19% 28%;
+    --muted-foreground: 150 38% 20%;
+    --accent: 150 38% 20%;
     --accent-foreground: 40 33% 95%;
     --destructive: 0 65% 55%;
     --destructive-foreground: 0 0% 100%;
     --border: 40 15% 82%;
     --input: 40 15% 82%;
-    --ring: 137 19% 28%;
+    --ring: 150 38% 20%;
     --radius: 0.5rem;
 
     --ivory: 40 33% 95%;
     --cream: 40 25% 91%;
-    --sage: 137 19% 28%;
-    --sage-dark: 137 19% 22%;
-    --sage-light: 137 19% 35%;
-    --gold: 137 19% 28%;
-    --gold-soft: 137 19% 35%;
+    --sage: 150 38% 20%;
+    --sage-dark: 150 42% 14%;
+    --sage-light: 150 30% 34%;
+    --gold: 36 82% 48%;
+    --gold-soft: 36 68% 60%;
     --champagne: 40 33% 95%;
     --champagne-dark: 40 20% 88%;
     --champagne-light: 40 25% 91%;
+
+    /* Soft section washes, used only as a background flow down the page —
+       never as --background itself, since the couple portrait (couple.webp)
+       has that exact colour baked into its own background pixels. */
+    --wash-gold: 36 70% 90%;
+    --wash-sage: 150 32% 90%;
 
     --shadow-soft: 0 2px 15px -3px rgba(71, 84, 58, 0.08), 0 4px 6px -2px rgba(71, 84, 58, 0.04);
     --shadow-elegant: 0 10px 40px -10px rgba(71, 84, 58, 0.12), 0 4px 15px -3px rgba(71, 84, 58, 0.06);
@@ -47,7 +53,19 @@
 
   html,
   body {
-    @apply bg-background text-foreground font-body antialiased;
+    @apply text-foreground font-body antialiased;
+    /* A slow colour flow down the page instead of one flat tone throughout —
+       the couple portrait section pins itself back to flat --background so
+       its baked-in edge still lines up (see src/components/Couple.tsx). */
+    background: linear-gradient(
+      180deg,
+      hsl(var(--background)) 0%,
+      hsl(var(--wash-gold)) 18%,
+      hsl(var(--background)) 36%,
+      hsl(var(--wash-sage)) 56%,
+      hsl(var(--wash-gold)) 76%,
+      hsl(var(--background)) 100%
+    );
     overflow-x: hidden;
   }
 

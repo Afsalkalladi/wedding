@@ -107,7 +107,7 @@ export function MusicToggle() {
       aria-label={playing ? 'Mute sound' : 'Unmute sound'}
       aria-pressed={playing}
       title={playing ? 'Mute' : 'Unmute'}
-      className="fixed bottom-5 right-5 z-40 w-12 h-12 rounded-full bg-background/90 backdrop-blur-sm border border-foreground/15 shadow-soft flex items-center justify-center text-foreground/80 hover:text-foreground hover:border-foreground/30 transition-colors"
+      className="fixed bottom-5 right-5 z-40 w-12 h-12 rounded-full bg-background/90 backdrop-blur-sm shadow-soft hover:shadow-elegant flex items-center justify-center text-foreground/80 hover:text-foreground transition-[color,box-shadow]"
     >
       {playing ? <Volume2 className="w-5 h-5" /> : <VolumeX className="w-5 h-5" />}
     </motion.button>

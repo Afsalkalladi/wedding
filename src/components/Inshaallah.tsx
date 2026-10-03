@@ -8,11 +8,11 @@ export function Inshaallah() {
         <p
           dir="rtl"
           lang="ar"
-          className="font-arabic text-[clamp(1.5rem,7vw,2.5rem)] text-foreground/80 leading-[1.9]"
+          className="font-arabic text-[clamp(1.7rem,7.5vw,2.75rem)] text-foreground/80 leading-[1.9]"
         >
           إِنْ شَاءَ ٱللَّٰه
         </p>
-        <p className="mt-2 font-body text-[0.65rem] sm:text-xs tracking-[0.3em] uppercase text-foreground/45">
+        <p className="mt-2 font-body text-xs sm:text-sm tracking-[0.3em] uppercase text-gold-soft">
           In sha&rsquo; Allah
         </p>
       </Reveal>

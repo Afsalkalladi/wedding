@@ -19,7 +19,7 @@ function getTimeLeft(target: Date): TimeLeft {
 /** A small eight-point star, used between the units. */
 function StarDivider() {
   return (
-    <svg viewBox="0 0 24 24" aria-hidden="true" className="w-3 h-3 shrink-0 text-foreground/25">
+    <svg viewBox="0 0 24 24" aria-hidden="true" className="w-3.5 h-3.5 shrink-0 text-gold/70">
       <path
         d="M6 6h12v12H6z M12 2l10 10-10 10L2 12z"
         fill="none"
@@ -66,23 +66,40 @@ export function Countdown() {
             alt=""
             className="w-14 sm:w-16 h-auto mx-auto mb-6 opacity-70 pointer-events-none select-none"
           />
-          <h2 className="font-display text-[clamp(2.25rem,10vw,4.5rem)] text-foreground mb-2">
+          <h2 className="font-display text-[clamp(2.5rem,11vw,5rem)] text-foreground mb-2">
             Countdown
           </h2>
-          <p className="font-body text-[0.65rem] sm:text-xs tracking-[0.25em] uppercase text-foreground/50">
+          <p className="font-body text-xs sm:text-sm tracking-[0.25em] uppercase text-gold-soft">
             Until {gregorianLabel(site.weddingDate, { weekday: undefined })}
           </p>
         </Reveal>
 
         <Reveal delay={0.1} className="mt-10">
-          <div className="inline-flex items-center justify-center gap-1 sm:gap-3 rounded-2xl border border-foreground/10 bg-background/70 backdrop-blur-[2px] px-4 sm:px-8 py-6 sm:py-8">
+          <div
+            className="relative inline-flex items-center justify-center gap-1 sm:gap-3 rounded-2xl backdrop-blur-[2px] px-4 sm:px-8 py-6 sm:py-8 shadow-soft"
+            style={{
+              background:
+                'linear-gradient(145deg, hsl(var(--background) / 0.8), hsl(var(--wash-gold) / 0.65))',
+            }}
+          >
+            <img
+              src={assets.arabesque}
+              alt=""
+              className="absolute -left-3 -top-3 w-10 sm:w-14 h-auto opacity-35 pointer-events-none select-none"
+            />
+            <img
+              src={assets.arabesque}
+              alt=""
+              style={{ transform: 'scaleX(-1)' }}
+              className="absolute -right-3 -top-3 w-10 sm:w-14 h-auto opacity-35 pointer-events-none select-none"
+            />
             {units.map((unit, index) => (
               <div key={unit.label} className="flex items-center gap-1 sm:gap-3">
                 <div className="flex flex-col items-center px-2 sm:px-4">
-                  <span className="font-display text-[clamp(2rem,10vw,4rem)] text-foreground leading-none">
+                  <span className="font-display text-[clamp(2.25rem,11vw,4.5rem)] text-foreground leading-none">
                     {String(unit.value).padStart(2, '0')}
                   </span>
-                  <span className="mt-2 text-[0.6rem] sm:text-xs tracking-[0.2em] uppercase text-foreground/50 font-body">
+                  <span className="mt-2 text-[0.65rem] sm:text-xs tracking-[0.2em] uppercase text-gold-soft font-body">
                     {unit.label}
                   </span>
                 </div>

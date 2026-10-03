@@ -53,7 +53,7 @@ export function Hero() {
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 0.8 }}
-            className="mt-8 md:mt-10 text-[0.6rem] sm:text-sm tracking-[0.3em] sm:tracking-[0.35em] uppercase text-foreground/55 font-body"
+            className="mt-8 md:mt-10 text-xs sm:text-base tracking-[0.3em] sm:tracking-[0.35em] uppercase text-gold-soft font-body font-medium"
           >
             We are getting married
           </motion.p>
@@ -64,21 +64,21 @@ export function Hero() {
             transition={{ duration: 1.2, delay: 1 }}
             className="mt-5 md:mt-6"
           >
-            <h1 className="font-display text-[clamp(1.9rem,8.5vw,4rem)] text-foreground leading-[1.08] break-words">
+            <h1 className="font-display text-[clamp(2.2rem,9.5vw,4.75rem)] text-foreground leading-[1.08] break-words">
               {site.bride.name}
             </h1>
-            <p className="mt-2 font-body text-[0.6rem] sm:text-sm tracking-[0.1em] sm:tracking-[0.18em] uppercase text-foreground/50 leading-relaxed">
+            <p className="mt-2 font-body text-xs sm:text-base tracking-[0.1em] sm:tracking-[0.18em] uppercase text-foreground/50 leading-relaxed">
               D/o {site.bride.parents}
             </p>
 
-            <p className="font-display text-2xl sm:text-3xl text-foreground/60 italic my-4 sm:my-5">
+            <p className="font-display text-3xl sm:text-4xl text-gold italic my-4 sm:my-5">
               &amp;
             </p>
 
-            <h1 className="font-display text-[clamp(1.9rem,8.5vw,4rem)] text-foreground leading-[1.08] break-words">
+            <h1 className="font-display text-[clamp(2.2rem,9.5vw,4.75rem)] text-foreground leading-[1.08] break-words">
               {site.groom.name}
             </h1>
-            <p className="mt-2 font-body text-[0.6rem] sm:text-sm tracking-[0.1em] sm:tracking-[0.18em] uppercase text-foreground/50 leading-relaxed">
+            <p className="mt-2 font-body text-xs sm:text-base tracking-[0.1em] sm:tracking-[0.18em] uppercase text-foreground/50 leading-relaxed">
               S/o {site.groom.parents}
             </p>
           </motion.div>
@@ -89,10 +89,10 @@ export function Hero() {
             transition={{ duration: 1, delay: 1.4 }}
             className="mt-8 md:mt-10"
           >
-            <p className="font-body text-sm sm:text-base md:text-lg tracking-[0.18em] text-foreground/70">
+            <p className="font-body text-base sm:text-lg md:text-xl tracking-[0.18em] text-foreground/70">
               {gregorianLabel(site.weddingDate)}
             </p>
-            <p className="mt-2 font-body text-[0.65rem] sm:text-xs tracking-[0.18em] uppercase text-foreground/45">
+            <p className="mt-2 font-body text-xs sm:text-sm tracking-[0.18em] uppercase text-foreground/45">
               {hijriLabel(site.weddingDate)}
             </p>
           </motion.div>
