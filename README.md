@@ -180,11 +180,12 @@ VITE_SITE_URL=https://your-site.example npm run build
 
 ## Sound
 
-Save an audio file as `src/assets/music.mp3` (or `music.m4a` / `music.ogg`) and a **Play
-sound** button appears in the bottom-right corner; without the file, nothing is shown.
+Save an audio file as `src/assets/music.mp3` (or `music.m4a` / `music.ogg`) and a round
+**speaker** button appears in the bottom-right corner (crossed-out speaker = muted, tap to
+unmute); without the file, nothing is shown.
 Files in `src/assets/` get a content-hashed name when built, so a replaced file is never
 served stale from a guest's cache. Browsers never allow sound to
-start by itself, so guests tap to play. The track loops, fades in and out over ~2 s, and
+start by itself, so the page opens muted and guests tap to unmute. The track loops, fades in and out over ~2 s, and
 pauses when the tab is in the background.
 
 Keep the file small (a 2–3 minute loop at 128 kbps is ~2–3 MB). Only use audio you have

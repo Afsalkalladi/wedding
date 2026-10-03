@@ -1,22 +1,22 @@
 import { useEffect, useRef, useState } from 'react'
-import { AnimatePresence, motion } from 'framer-motion'
-import { Pause, Play } from 'lucide-react'
+import { motion } from 'framer-motion'
+import { Volume2, VolumeX } from 'lucide-react'
 import { assets } from '../lib/site'
 
 const TARGET_VOLUME = 0.4
 const FADE_MS = 1800
 
 /**
- * Background audio. Browsers refuse to start sound without a tap, so the page
- * offers a button; the track then fades in, loops, and pauses while the tab is
- * hidden. Renders nothing if the audio file isn't there.
+ * Background audio behind a mute/unmute speaker button. Browsers refuse to
+ * start sound without a tap, so the page opens muted; unmuting fades the track
+ * in, muting fades it out. It loops, and pauses while the tab is hidden.
+ * Renders nothing if there's no audio file.
  */
 export function MusicToggle() {
   const audioRef = useRef<HTMLAudioElement | null>(null)
   const fadeRef = useRef<number>()
   const [available, setAvailable] = useState(false)
   const [playing, setPlaying] = useState(false)
-  const [showLabel, setShowLabel] = useState(true)
 
   useEffect(() => {
     if (assets.backgroundMusic.length === 0) return
@@ -62,13 +62,6 @@ export function MusicToggle() {
     }
   }, [])
 
-  // Collapse the "Play" label to just the icon after a few seconds.
-  useEffect(() => {
-    if (!available) return
-    const id = window.setTimeout(() => setShowLabel(false), 6000)
-    return () => window.clearTimeout(id)
-  }, [available])
-
   const fadeTo = (audio: HTMLAudioElement, target: number, then?: () => void) => {
     window.clearInterval(fadeRef.current)
     const steps = 30
@@ -88,7 +81,6 @@ export function MusicToggle() {
   const toggle = () => {
     const audio = audioRef.current
     if (!audio) return
-    setShowLabel(false)
 
     if (audio.paused) {
       audio
@@ -112,24 +104,12 @@ export function MusicToggle() {
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.8, delay: 1.5 }}
       onClick={toggle}
-      aria-label={playing ? 'Pause sound' : 'Play sound'}
+      aria-label={playing ? 'Mute sound' : 'Unmute sound'}
       aria-pressed={playing}
-      className="fixed bottom-5 right-5 z-40 h-12 min-w-12 px-3.5 rounded-full bg-background/90 backdrop-blur-sm border border-foreground/15 shadow-soft flex items-center justify-center gap-2 text-foreground/80 hover:text-foreground hover:border-foreground/30 transition-colors"
+      title={playing ? 'Mute' : 'Unmute'}
+      className="fixed bottom-5 right-5 z-40 w-12 h-12 rounded-full bg-background/90 backdrop-blur-sm border border-foreground/15 shadow-soft flex items-center justify-center text-foreground/80 hover:text-foreground hover:border-foreground/30 transition-colors"
     >
-      {playing ? <Pause className="w-4 h-4" /> : <Play className="w-4 h-4 ml-0.5" />}
-      <AnimatePresence initial={false}>
-        {showLabel && !playing && (
-          <motion.span
-            key="label"
-            initial={{ opacity: 0, width: 0 }}
-            animate={{ opacity: 1, width: 'auto' }}
-            exit={{ opacity: 0, width: 0 }}
-            className="overflow-hidden whitespace-nowrap font-body text-[0.65rem] tracking-[0.2em] uppercase"
-          >
-            Play sound
-          </motion.span>
-        )}
-      </AnimatePresence>
+      {playing ? <Volume2 className="w-5 h-5" /> : <VolumeX className="w-5 h-5" />}
     </motion.button>
   )
 }

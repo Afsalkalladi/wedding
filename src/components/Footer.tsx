@@ -16,11 +16,6 @@ export function Footer() {
           alt=""
           className="w-20 md:w-24 h-auto mx-auto mb-8 opacity-80 pointer-events-none select-none"
         />
-        <div className="font-display text-[clamp(1.5rem,7vw,2.75rem)] text-foreground mb-4 leading-tight">
-          <p>{site.bride.name}</p>
-          <p className="text-[0.6em] text-foreground/50 italic my-1">&amp;</p>
-          <p>{site.groom.name}</p>
-        </div>
         <p className="font-body text-sm sm:text-base text-foreground/50 tracking-wide">
           {gregorianLabel(site.weddingDate)}
         </p>
