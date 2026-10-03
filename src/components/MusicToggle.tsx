@@ -3,7 +3,7 @@ import { motion } from 'framer-motion'
 import { Volume2, VolumeX } from 'lucide-react'
 import { assets } from '../lib/site'
 
-const TARGET_VOLUME = 0.4
+const TARGET_VOLUME = 0.25
 const FADE_MS = 1800
 
 /**
