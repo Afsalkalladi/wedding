@@ -28,7 +28,7 @@ export function MessageForm() {
   return (
     <section
       id="message"
-      className="relative py-16 md:py-24 px-5 overflow-hidden"
+      className="relative py-10 md:py-14 px-5 overflow-hidden"
       style={{
         background:
           'linear-gradient(180deg, transparent 0%, hsl(var(--wash-gold) / 0.55) 45%, transparent 100%)',

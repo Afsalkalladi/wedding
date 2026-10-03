@@ -7,7 +7,7 @@ export function Location() {
   return (
     <section
       id="location"
-      className="relative py-16 md:py-24 px-5 overflow-hidden"
+      className="relative py-10 md:py-14 px-5 overflow-hidden"
       style={{
         background:
           'linear-gradient(180deg, transparent 0%, hsl(var(--wash-sage) / 0.6) 45%, transparent 100%)',

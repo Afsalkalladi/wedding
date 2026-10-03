@@ -4,7 +4,7 @@ import { gregorianLabel, hijriLabel } from '../lib/hijri'
 
 export function Footer() {
   return (
-    <footer className="py-14 md:py-20 text-center px-5">
+    <footer className="py-8 md:py-10 text-center px-5">
       <motion.div
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}

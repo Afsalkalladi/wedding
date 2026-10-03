@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { AmbientMotes } from './components/AmbientMotes'
+import { Countdown } from './components/Countdown'
 import { CoverScreen } from './components/CoverScreen'
 import { Footer } from './components/Footer'
 import { Hero } from './components/Hero'
@@ -45,6 +46,7 @@ export default function App() {
         <Divider />
         <MessageForm />
         <Inshaallah />
+        <Countdown />
         <Footer />
       </main>
       <MusicToggle />

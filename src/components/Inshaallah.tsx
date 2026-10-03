@@ -3,7 +3,7 @@ import { Reveal } from './Reveal'
 /** The closing word of the invitation. */
 export function Inshaallah() {
   return (
-    <section className="relative px-5 pt-6 pb-4 text-center">
+    <section className="relative px-5 pt-4 pb-1 text-center">
       <Reveal>
         <p
           dir="rtl"

@@ -68,21 +68,21 @@ export function CoverScreen({ onOpened }: { onOpened: () => void }) {
             <img
               src={assets.couple ?? assets.coupleFallback}
               alt={`Illustration of ${site.bride.name} and ${site.groom.name}`}
-              className="block h-auto w-[76vw] max-w-[340px] select-none pointer-events-none"
+              className="block h-auto w-[82vw] max-w-[380px] select-none pointer-events-none"
             />
           </div>
 
           <div>
-            <p className="font-display text-[clamp(1.75rem,7.5vw,2.5rem)] leading-tight text-foreground">
+            <p className="font-display text-[clamp(1.95rem,8.5vw,2.85rem)] leading-tight text-foreground">
               {site.bride.name}
             </p>
-            <p className="font-display text-xl text-gold italic leading-none my-1">&amp;</p>
-            <p className="font-display text-[clamp(1.75rem,7.5vw,2.5rem)] leading-tight text-foreground">
+            <p className="font-display text-2xl text-gold italic leading-none my-1">&amp;</p>
+            <p className="font-display text-[clamp(1.95rem,8.5vw,2.85rem)] leading-tight text-foreground">
               {site.groom.name}
             </p>
           </div>
 
-          <p className="font-body text-sm sm:text-base tracking-[0.25em] uppercase text-gold-soft">
+          <p className="font-body text-base sm:text-lg tracking-[0.25em] uppercase text-gold-soft">
             {gregorianLabel(site.weddingDate, { weekday: undefined })}
           </p>
 
