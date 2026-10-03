@@ -46,7 +46,14 @@ export function Countdown() {
   ]
 
   return (
-    <section id="countdown" className="relative py-16 md:py-24 px-5 overflow-hidden">
+    <section
+      id="countdown"
+      className="relative py-16 md:py-24 px-5 overflow-hidden"
+      style={{
+        background:
+          'linear-gradient(180deg, transparent 0%, hsl(var(--wash-gold) / 0.65) 45%, transparent 100%)',
+      }}
+    >
       {/* The pattern is masked into a soft pool instead of being framed by
           cut-out panels, so it melts into the page rather than sitting on it. */}
       <div

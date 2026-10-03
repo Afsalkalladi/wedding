@@ -5,7 +5,14 @@ import { gregorianLabel, hijriLabel } from '../lib/hijri'
 
 export function Location() {
   return (
-    <section id="location" className="relative py-16 md:py-24 px-5 overflow-hidden">
+    <section
+      id="location"
+      className="relative py-16 md:py-24 px-5 overflow-hidden"
+      style={{
+        background:
+          'linear-gradient(180deg, transparent 0%, hsl(var(--wash-sage) / 0.6) 45%, transparent 100%)',
+      }}
+    >
       <div className="max-w-2xl mx-auto text-center">
         <Reveal>
           <h2 className="font-display text-[clamp(2.5rem,11vw,5rem)] text-foreground mb-2">

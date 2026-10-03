@@ -53,19 +53,13 @@
 
   html,
   body {
-    @apply text-foreground font-body antialiased;
-    /* A slow colour flow down the page instead of one flat tone throughout —
-       the couple portrait section pins itself back to flat --background so
-       its baked-in edge still lines up (see src/components/Couple.tsx). */
-    background: linear-gradient(
-      180deg,
-      hsl(var(--background)) 0%,
-      hsl(var(--wash-gold)) 18%,
-      hsl(var(--background)) 36%,
-      hsl(var(--wash-sage)) 56%,
-      hsl(var(--wash-gold)) 76%,
-      hsl(var(--background)) 100%
-    );
+    /* Flat on purpose: the couple portrait (couple.webp) has this exact
+       colour baked into its own background pixels, so the page base can
+       never drift from it. Colour variety comes from each section's own
+       wash (see Countdown/Location/MessageForm), which fades to fully
+       transparent at its own top and bottom edges — so it always meets
+       this same flat tone at every boundary, with no seam. */
+    @apply bg-background text-foreground font-body antialiased;
     overflow-x: hidden;
   }
 
