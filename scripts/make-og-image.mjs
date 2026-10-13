@@ -17,10 +17,13 @@ const WIDTH = 1200
 const HEIGHT = 630
 const IVORY = '#F7F3EA'
 
-// Prefer the white-ground portrait from `npm run couple`; otherwise the drawn SVG.
+// Prefer the live on-page portrait (already tinted to the page colour); then
+// the white-ground portrait from `npm run couple`; otherwise the drawn SVG.
+const live = `${root}src/assets/couple.webp`
 const portrait = `${root}art/couple-white.png`
 const fallback = `${root}public/assets/islamic/couple-illustration.svg`
-const couplePath = existsSync(portrait) ? portrait : fallback
+const couplePath = existsSync(live) ? live : existsSync(portrait) ? portrait : fallback
+const isLive = couplePath === live
 
 // A faint khatim pattern that fades out toward the edges, as on the site.
 const background = Buffer.from(`
@@ -50,8 +53,10 @@ const couple = await sharp(couplePath, { density: 300 })
 
 const out = `${root}public/og-image.jpg`
 await sharp(background)
-  // multiply, as on the page, so the portrait's white ground becomes ivory
-  .composite([{ input: couple, gravity: 'center', blend: 'multiply' }])
+  // The live portrait's ground is already tinted to the page colour, so lay
+  // it straight on top; the white-ground fallback still needs multiply to
+  // turn its white ground into ivory.
+  .composite([{ input: couple, gravity: 'center', blend: isLive ? 'over' : 'multiply' }])
   .flatten({ background: IVORY })
   .jpeg({ quality: 86, mozjpeg: true })
   .toFile(out)
