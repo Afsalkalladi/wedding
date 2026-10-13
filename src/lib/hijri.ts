@@ -3,32 +3,30 @@
  *
  * Umm al-Qura is calculated, so a date observed by local moon sighting can fall
  * a day either side of it — worth confirming locally before printing.
+ *
+ * We ask Intl for the month as a *number*, not a name: asking for `month:
+ * 'short'` hits inconsistent (and sometimes outright buggy) CLDR data across
+ * platforms — Android has been seen returning the Gregorian month name for
+ * the same index (e.g. month 5 rendered as "May"), iOS a different
+ * abbreviation style than Chrome/desktop ("Jmd" vs "Jum. I"). The month
+ * index itself is plain arithmetic and consistent everywhere, so we map it
+ * to our own canonical names instead of trusting the OS's month-name table.
  */
 
-const MONTH_NAMES: Record<string, string> = {
-  'Muh.': 'Muharram',
-  Muharram: 'Muharram',
-  Saf: 'Safar',
-  Safar: 'Safar',
-  'Rab. I': 'Rabi al-Awwal',
-  'Rab. II': 'Rabi al-Thani',
-  'Jum. I': 'Jumada al-Ula',
-  'Jumada I': 'Jumada al-Ula',
-  'Jum. II': 'Jumada al-Akhira',
-  'Jumada II': 'Jumada al-Akhira',
-  Raj: 'Rajab',
-  Rajab: 'Rajab',
-  'Sha.': 'Shaban',
-  Shaban: 'Shaban',
-  Ram: 'Ramadan',
-  Ramadan: 'Ramadan',
-  Shaw: 'Shawwal',
-  Shawwal: 'Shawwal',
-  'Dhuʻl-Q.': 'Dhu al-Qadah',
-  "Dhu'l-Q.": 'Dhu al-Qadah',
-  'Dhuʻl-H.': 'Dhu al-Hijjah',
-  "Dhu'l-H.": 'Dhu al-Hijjah',
-}
+const MONTH_NAMES = [
+  'Muharram',
+  'Safar',
+  'Rabi al-Awwal',
+  'Rabi al-Thani',
+  'Jumada al-Ula',
+  'Jumada al-Akhira',
+  'Rajab',
+  'Shaban',
+  'Ramadan',
+  'Shawwal',
+  'Dhu al-Qadah',
+  'Dhu al-Hijjah',
+]
 
 function utcDate(iso: string) {
   const [year, month, day] = iso.split('-').map(Number)
@@ -41,13 +39,14 @@ export function hijriLabel(iso: string): string {
     const parts = new Intl.DateTimeFormat('en-u-ca-islamic-umalqura', {
       timeZone: 'UTC',
       day: 'numeric',
-      month: 'short',
+      month: 'numeric',
       year: 'numeric',
     }).formatToParts(utcDate(iso))
 
     const get = (type: string) => parts.find((part) => part.type === type)?.value ?? ''
-    const month = get('month')
-    return `${get('day')} ${MONTH_NAMES[month] ?? month} ${get('year').replace(/\s*AH$/, '')} AH`
+    const monthIndex = Number(get('month')) - 1
+    const month = MONTH_NAMES[monthIndex] ?? get('month')
+    return `${get('day')} ${month} ${get('year').replace(/\s*AH$/, '')} AH`
   } catch {
     return ''
   }
